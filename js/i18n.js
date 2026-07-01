@@ -70,7 +70,7 @@ const I18N = {
 };
 
 function getLang() {
-  return localStorage.getItem("ft-lang") || "ru";
+  return localStorage.getItem("ft-lang") || "en";
 }
 
 function setLang(lang) {
