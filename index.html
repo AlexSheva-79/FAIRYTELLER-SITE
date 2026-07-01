@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fairyteller — архив снов на стыке человека и машины</title>
+  <meta name="description" content="Портфолио AI-художника Fairyteller. Киберпанк-портреты, в которых нежность оказалась сильнее неона.">
+
+  <!-- Open Graph / соцсети -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fairyteller">
+  <meta property="og:title" content="Fairyteller — архив снов на стыке человека и машины">
+  <meta property="og:description" content="Портфолио AI-художника Fairyteller. Киберпанк-портреты, в которых нежность оказалась сильнее неона.">
+  <meta property="og:url" content="https://alexsheva-79.github.io/FAIRYTELLER-SITE/">
+  <meta property="og:image" content="https://alexsheva-79.github.io/FAIRYTELLER-SITE/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fairyteller — архив снов на стыке человека и машины">
+  <meta name="twitter:description" content="Портфолио AI-художника Fairyteller. Киберпанк-портреты, в которых нежность оказалась сильнее неона.">
+  <meta name="twitter:image" content="https://alexsheva-79.github.io/FAIRYTELLER-SITE/assets/og-image.jpg">
+
+  <link rel="icon" type="image/png" href="assets/logo/logo-clean.png">
+
+  <!-- Шрифты: Unbounded (дисплей) + Inter (текст), с кириллицей -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Jura:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap&subset=cyrillic,latin" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css?v=11">
+</head>
+<body>
+
+  <!-- Прелоадер -->
+  <div class="preloader">
+    <img src="assets/logo/logo-full.png" alt="Fairyteller">
+  </div>
+
+  <!-- Хедер -->
+  <header class="header">
+    <a class="header__logo" href="index.html"><img src="assets/logo/logo-clean.png" alt="Fairyteller"></a>
+    <ul class="nav__links">
+      <li><a class="is-active" href="index.html" data-i18n="nav.home">Главная</a></li>
+      <li><a href="gallery.html" data-i18n="nav.gallery">Галерея</a></li>
+      <li><a href="#about" data-i18n="nav.about">Обо мне</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Контакты</a></li>
+    </ul>
+    <div class="nav__right">
+      <div class="lang">
+        <button data-lang="ru">RU</button>
+        <span>/</span>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu">
+    <a href="index.html" data-i18n="nav.home">Главная</a>
+    <a href="gallery.html" data-i18n="nav.gallery">Галерея</a>
+    <a href="#about" data-i18n="nav.about">Обо мне</a>
+    <a href="#contact" data-i18n="nav.contact">Контакты</a>
+    <div class="lang mobile-menu__lang">
+      <button data-lang="ru">RU</button>
+      <span>/</span>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__banner">
+      <!-- слайды из избранного рендерятся в main.js -->
+      <span class="hero__corner hero__corner--tl"></span>
+      <span class="hero__corner hero__corner--tr"></span>
+      <span class="hero__corner hero__corner--bl"></span>
+      <span class="hero__corner hero__corner--br"></span>
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__left">
+        <img class="hero__logo" src="assets/logo/logo-full.png" alt="Fairyteller">
+        <p class="hero__eyebrow" data-i18n="hero.eyebrow">// АРХИВ ВИДЕНИЙ — 001</p>
+        <p class="hero__sub" data-i18n="hero.sub">Я учу алгоритмы смотреть так, как смотрит человек, который ещё не разучился удивляться.</p>
+        <a class="hero__cta" href="gallery.html">
+          <span data-i18n="hero.cta">Перейти в галерею</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- Блок после hero: сквозной фон-стены (bg-left / bg-right) на showcase + about + contact -->
+  <div class="walls side-walls">
+
+  <!-- Showcase -->
+  <section class="section showcase">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="eyebrow" data-i18n="showcase.title">Избранное</p>
+        <h2 class="section-title" data-i18n="showcase.title">Избранное</h2>
+        <p data-i18n="showcase.sub">Четыре кадра, которые держат меня крепче остальных.</p>
+      </div>
+      <div class="showcase__grid"><!-- карточки рендерятся из works.js --></div>
+      <div class="showcase__more reveal">
+        <a class="btn-ghost" href="gallery.html" data-i18n="showcase.all">Вся коллекция</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container about__grid">
+      <div class="about__portrait reveal">
+        <img src="assets/portrait/artist.webp" alt="Fairyteller">
+      </div>
+      <div class="about__body reveal">
+        <p class="eyebrow" data-i18n="about.title">О художнике</p>
+        <img class="about__logo" src="assets/logo/logo-clean.png" alt="Fairyteller">
+        <p data-i18n="about.body"></p>
+        <div class="about__stats">
+          <div class="about__stat">
+            <div class="num"><span data-count="4">4</span></div>
+            <div class="lbl">года / years</div>
+          </div>
+          <div class="about__stat">
+            <div class="num"><span data-count="13">13</span></div>
+            <div class="lbl">работ в галерее / works in gallery</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow" data-i18n="contact.title">Найти меня</p>
+        <h2 class="section-title" data-i18n="contact.title">Найти меня</h2>
+        <p class="contact__desc" data-i18n="contact.desc">Если что-то здесь отозвалось — напишите.</p>
+      </div>
+      <div class="contact__links reveal">
+        <a class="contact__link" href="mailto:alexsheva79@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span data-i18n="contact.email">Почта</span>
+        </a>
+        <a class="contact__link" href="https://www.instagram.com/fairyteller_art/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span data-i18n="contact.instagram">Instagram</span>
+        </a>
+        <a class="contact__link" href="https://t.me/fairytellerart" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          <span data-i18n="contact.telegram">Telegram</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /.walls -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__logo"><img src="assets/logo/logo-clean.png" alt="Fairyteller"></div>
+    <p class="footer__tagline" data-i18n="footer.tagline">Сделано вручную, кадр за кадром</p>
+    <p class="footer__visits"><span class="vnum">·</span> <span data-i18n="visits.label">визитов</span></p>
+  </footer>
+
+  <script src="js/works.js?v=11"></script>
+  <script src="js/i18n.js?v=11"></script>
+  <script src="js/supabase.js?v=11"></script>
+  <script src="js/main.js?v=11"></script>
+</body>
+</html>
