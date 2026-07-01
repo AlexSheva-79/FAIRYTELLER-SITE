@@ -145,17 +145,27 @@ body::before {
 .nav__right { display: flex; align-items: center; gap: 24px; }
 
 /* переключатель языка — в цвет лого, активный язык ярче */
-.lang { display: flex; align-items: center; gap: 4px; font-family: var(--font-display); font-size: 0.8rem; }
+.lang { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 0.8rem; }
+/* обводка-пилюля в стиле hero__cta: активный язык — розовая обводка + свечение,
+   неактивный — тонкая нейтральная обводка, текст в тон лого чуть притушен */
 .lang button {
-  padding: 6px 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 100px;
   background: var(--logo-grad);
   -webkit-background-clip: text; background-clip: text;
   color: transparent;
-  opacity: 0.5;
-  transition: opacity 0.25s var(--ease);
+  opacity: 0.7;
+  transition: opacity 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
-.lang button.is-active { opacity: 1; }
-.lang span { color: var(--line); }
+.lang button.is-active {
+  opacity: 1;
+  border-color: var(--pink);
+  box-shadow: 0 0 14px rgba(255, 31, 116, 0.35);
+}
+.lang button:hover { opacity: 1; }
+/* разделитель больше не нужен — язык теперь читается как две отдельные пилюли */
+.lang span { display: none; }
 
 /* бургер (мобильное меню) */
 .burger { display: none; width: 30px; height: 22px; position: relative; z-index: 120; }
