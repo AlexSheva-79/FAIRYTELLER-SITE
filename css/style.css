@@ -273,11 +273,15 @@ body::before {
 .hero__cta:hover { background: rgba(255,31,116,0.1); box-shadow: var(--pink-glow); transform: translateY(-2px); }
 .hero__cta svg { width: 16px; height: 16px; }
 
-/* баннер из избранных работ — без рамки, правый край экрана, левый край растворяется в фон */
+/* видео-баннер — без рамки, правый край экрана, левый край растворяется в фон.
+   Ролики 16:9 — блок держит их родную пропорцию и центрируется по высоте hero,
+   вместо растяжения на всю высоту (как было с картинками через object-fit:cover). */
 .hero__banner {
   position: absolute;
-  top: 0; right: 0; bottom: 0;
+  top: 50%; right: 0;
   width: 56%;
+  aspect-ratio: 16 / 9;
+  transform: translateY(-50%);
   z-index: 0;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%);
   mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%);
@@ -286,12 +290,20 @@ body::before {
   position: absolute; inset: 0;
   opacity: 0;
   transition: opacity 1.2s var(--ease);
+  /* лёгкое растворение верхнего/нижнего края кадра — слабее, чем боковая маска на .hero__banner */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 .hero__slide.is-active { opacity: 1; }
 .hero__slide img {
   width: 100%; height: 100%; object-fit: cover;
   transform: scale(1);
   will-change: transform;
+}
+/* видео показывается целиком, в родной пропорции 16:9, без обрезки и без зума */
+.hero__slide video {
+  width: 100%; height: 100%; object-fit: contain;
+  display: block;
 }
 /* Ken Burns: медленный зум длиннее времени показа слайда (9s vs 4.5s смены),
    чтобы движение не успевало «дёргаться» об конец анимации при кроссфейде.
@@ -879,7 +891,7 @@ body.intro-ready .hero__corner  {
   .hero__banner {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 16 / 9;
     order: -1;
     -webkit-mask-image: linear-gradient(180deg, black 55%, transparent 100%);
     mask-image: linear-gradient(180deg, black 55%, transparent 100%);

@@ -104,45 +104,56 @@ function renderShowcase() {
   });
 }
 
-/* ---------- баннер избранного в hero (плавная смена) ---------- */
-// Каждый слайд «привязан» к акцентному цвету своей работы: при показе слайда
-// уголки-скобки баннера перекрашиваются в этот цвет, и рамка соответствующей
-// карточки в блоке showcase подсвечивается тем же цветом (см. renderShowcase).
-function accentColor(accent) { return accent === "gold" ? "var(--gold)" : "var(--cyan)"; }
+/* ---------- видео-баннер в hero (анимация избранных работ) ---------- */
+// Ролики не привязаны к конкретным работам (отдельная анимация из 4 файлов),
+// поэтому подсветки уголков/карточки showcase здесь больше нет — уголки остаются
+// в дефолтном цвете из CSS.
+const HERO_VIDEOS = ["hero-1", "hero-2", "hero-3", "hero-4"];
+
+function heroVideoSrc(name) {
+  const mobile = window.matchMedia("(max-width: 860px)").matches;
+  return `assets/video/${name}${mobile ? "-mobile" : ""}.mp4`;
+}
 
 function renderHeroBanner() {
   const banner = document.querySelector(".hero__banner");
   if (!banner) return;
-  const slides = WORKS.filter((w) => w.showcase);
   const corners = banner.querySelectorAll(".hero__corner");
 
-  slides.forEach((work, i) => {
+  HERO_VIDEOS.forEach((name, i) => {
     const slide = document.createElement("div");
     slide.className = "hero__slide" + (i === 0 ? " is-active" : "");
-    slide.innerHTML = `<img src="${showcaseSrc(work.slug)}" alt="" ${i === 0 ? "" : 'loading="lazy"'}>`;
+    const video = document.createElement("video");
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = i === 0 ? "auto" : "metadata";
+    video.poster = `assets/video/${name}-poster.jpg`;
+    video.src = heroVideoSrc(name);
+    slide.appendChild(video);
     // вставляем слайды перед уголками, чтобы уголки оставались поверх
     banner.insertBefore(slide, corners[0] || null);
   });
   const els = banner.querySelectorAll(".hero__slide");
+  const videos = banner.querySelectorAll(".hero__slide video");
 
-  // синхронная подсветка: уголки баннера + рамка карточки showcase текущей работы
-  function highlight(i) {
-    const col = accentColor(slides[i].accent);
-    corners.forEach((c) => { c.style.background = col; });
-    document.querySelectorAll(".showcase__grid .work").forEach((card) => {
-      card.classList.toggle("is-current", card.dataset.slug === slides[i].slug);
-    });
-  }
-  highlight(0);
+  // при уменьшенной анимации — просто показываем постер первого ролика, без автовоспроизведения
+  if (prefersReduced || videos.length < 2) return;
 
-  if (prefersReduced || slides.length < 2) return; // без авто-смены
   let idx = 0;
-  setInterval(() => {
+  function playSlide(i) {
+    const v = videos[i];
+    v.currentTime = 0;
+    v.play().catch(() => {});
+  }
+  function advance() {
     els[idx].classList.remove("is-active");
+    videos[idx].pause();
     idx = (idx + 1) % els.length;
     els[idx].classList.add("is-active");
-    highlight(idx);
-  }, 4500);
+    playSlide(idx);
+  }
+  videos.forEach((v) => v.addEventListener("ended", advance));
+  playSlide(0);
 }
 
 /* ---------- прелоадер + intro-последовательность hero ---------- */
